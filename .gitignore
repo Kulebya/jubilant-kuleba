@@ -1,4 +1,4 @@
-# Byte-compiled / optimized / DLL files
+gi# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -152,7 +152,7 @@ dmypy.json
 .pytype/
 
 # Cython debug symbols
-cython_debug/
+cython_debug
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
