@@ -1,16 +1,24 @@
 from typing import Union
 
+from masks import get_mask_account, get_mask_card_number
 
-def mask_account_card(card: Union[str]) -> Union[str]:
-    """Принимает строку, содержащую тип и номер карты или счета.
-    Возвращает строку с замаскированным номером"""
 
-    # По ключевому слову счет разделяем номер карты и счета
-    if "Счет" in card:
-        return f"{card[:5]}**{card[-4:]}"
+def mask_account_card(info: str) -> str:
+    """Обрабатывает информацию о картах и счетах и возвращает замаскированный номер."""
+    parts = info.split()  # Разделяем строку на части
+    account_type = " ".join(parts[:-1])  # Все части кроме последней - это тип
+    account_number = parts[-1]  # Последняя часть - это номер
+
+    if "Счет" in account_type:
+        return get_mask_account(account_number)
     else:
-        #Т.к. в названии карты разное количество символов, отсчет ведем с конца
-        return f"{card[:-12]} {card[-12:-18]} ** **** {card[-4:]}"
+        return get_mask_card_number(account_number)
+
+
+# проверка
+print(mask_account_card("Visa Platinum 7000792289606361"))
+print(mask_account_card("Maestro 7000792289606361"))
+print(mask_account_card("Счет 73654108430135874305"))
 
 
 def get_date(date_str: Union[str]) -> Union[str]:
@@ -25,5 +33,6 @@ def get_date(date_str: Union[str]) -> Union[str]:
     return f"{day}.{month}.{year}"
 
 
+# проверка
 print(mask_account_card("MasterCard 7158300734726758"))
 print(get_date("2024-08-31T02:26:18.671407"))
