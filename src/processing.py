@@ -10,3 +10,4 @@ def filter_by_state(transactions: List[Dict], state: str = "EXECUTED") -> List[D
 def sort_by_date(transactions: List[Dict], descending: bool = True) -> List[Dict]:
     """Сортирует список словарей по дате в указанном порядке."""
     return sorted(transactions, key=lambda x: x["date"], reverse=descending)
+
