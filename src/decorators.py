@@ -3,6 +3,9 @@ import logging
 
 
 def log(filename=None):
+    """ автоматически логирует начало и конец выполнения функций,
+    а также их результаты или возникшие ошибки,
+    может записывать логи в файл или выводить их в консоль."""
     if filename:
         logging.basicConfig(filename=filename, level=logging.INFO,
                             format='%(asctime)s - %(message)s')
